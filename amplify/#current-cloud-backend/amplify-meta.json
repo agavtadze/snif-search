@@ -1,0 +1,123 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-snif-search-prod-143048-authRole",
+			"UnauthRoleArn": "arn:aws:iam::879769658316:role/amplify-snif-search-prod-143048-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::879769658316:role/amplify-snif-search-prod-143048-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-snif-search-prod-143048-deployment",
+			"UnauthRoleName": "amplify-snif-search-prod-143048-unauthRole",
+			"StackName": "amplify-snif-search-prod-143048",
+			"StackId": "arn:aws:cloudformation:us-east-1:879769658316:stack/amplify-snif-search-prod-143048/66449160-1553-11ea-b0d5-0ec446493c7d",
+			"AmplifyAppId": "d2sr3oe78gyrd"
+		},
+		"categories": {
+			"auth": {
+				"cognitoab02366b": {}
+			},
+			"function": {
+				"snifsearchlambda": {}
+			}
+		}
+	},
+	"function": {
+		"snifsearchlambda": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:879769658316:function:snifsearchlambda-prod",
+				"Name": "snifsearchlambda-prod",
+				"LambdaExecutionRole": "snifsearchLambdaRole9be2f4f5-prod"
+			},
+			"lastPushTimeStamp": "2019-12-03T00:37:49.021Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-snif-search-prod-143048-deployment/amplify-cfn-templates/function/snifsearchlambda-cloudformation-template.json",
+				"logicalId": "functionsnifsearchlambda"
+			}
+		}
+	},
+	"auth": {
+		"cognitoab02366b": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"AppClientSecret": "rm4gs158o4kis1ooa5c1660a0fqr88sfbgeotr5rnrh26ov1lkd",
+				"UserPoolId": "us-east-1_xki6kJQ82",
+				"AppClientIDWeb": "3vr4omqomk6a7lpgk0gumju8tg",
+				"AppClientID": "2f98tpl30nj2rej51r42b7kf91",
+				"IdentityPoolId": "us-east-1:45a56df1-afc0-4de9-b033-c47c54238737",
+				"IdentityPoolName": "snif_search_identitypool_ca7b3dca__prod",
+				"UserPoolName": "snif_search_userpool_ca7b3dca"
+			},
+			"lastPushTimeStamp": "2019-12-03T00:37:49.023Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-snif-search-prod-143048-deployment/amplify-cfn-templates/auth/cognitoab02366b-cloudformation-template.yml",
+				"logicalId": "authcognitoab02366b"
+			}
+		}
+	},
+	"api": {
+		"snifsearchapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "snifsearchlambda",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"output": {
+				"ApiName": "snifsearchapi",
+				"RootUrl": "https://ap27bt5uh5.execute-api.us-east-1.amazonaws.com/prod"
+			},
+			"lastPushTimeStamp": "2019-12-03T00:37:49.023Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-snif-search-prod-143048-deployment/amplify-cfn-templates/api/snifsearchapi-cloudformation-template.json",
+				"logicalId": "apisnifsearchapi"
+			}
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"CloudFrontSecureURL": "https://d2hito639hswgr.cloudfront.net",
+				"S3BucketSecureURL": "https://snif-store-prod.s3.amazonaws.com",
+				"CloudFrontOriginAccessIdentity": "E320CJLYQLMH6",
+				"WebsiteURL": "http://snif-store-prod.s3-website-us-east-1.amazonaws.com",
+				"CloudFrontDistributionID": "E2QDYARRF2265",
+				"Region": "us-east-1",
+				"HostingBucketName": "snif-store-prod",
+				"CloudFrontDomainName": "d2hito639hswgr.cloudfront.net"
+			},
+			"lastPushTimeStamp": "2019-12-03T00:37:49.024Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-snif-search-prod-143048-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			}
+		}
+	},
+	"storage": {
+		"snifsearchprod": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-snif-search-prod-143048-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storagesnifsearchprod"
+			},
+			"lastPushTimeStamp": "2019-12-03T00:37:49.027Z",
+			"output": {
+				"BucketName": "snif-store-prodprod-prod",
+				"Region": "us-east-1"
+			},
+			"lastPushDirHash": "AkFmAw0FpBfqX7YZr2n+cFW/t6s="
+		}
+	}
+}
